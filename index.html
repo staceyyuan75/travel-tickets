@@ -220,48 +220,10 @@
     </div>
   </section>
 
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="all.js"></script>
   <script>
-    const list = document.querySelector(".ticketCard-area");
-    const resultText = document.querySelector("#searchResult-text");
-
-    function printCard(item) {
-      let content = `<li class="ticketCard">
-        <div class="ticketCard-img">
-          <a href="#">
-            <img src="${item.imgUrl}" alt="">
-          </a>
-          <div class="ticketCard-region">${item.area}</div>
-          <div class="ticketCard-rank">${item.rate}</div>
-        </div>
-        <div class="ticketCard-content">
-          <div>
-            <h3>
-              <a href="#" class="ticketCard-name">${item.name}</a>
-            </h3>
-            <p class="ticketCard-description">
-              ${item.description}
-            </p>
-          </div>
-          <div class="ticketCard-info">
-            <p class="ticketCard-num">
-              <span><i class="fas fa-exclamation-circle"></i></span>
-              剩下最後 <span id="ticketCard-num"> ${item.group} </span> 組
-            </p>
-            <p class="ticketCard-price">
-              TWD <span id="ticketCard-price">$${item.price}</span>
-            </p>
-          </div>
-        </div>
-      </li>`;
-
-      return content;
-    }
-
-    function printResultText(num) {
-      resultText.textContent = `本次搜尋共 ${num} 筆資料`;
-    }
-
     function showAlertMsg(name) {
       const alertMsg = `<i class="fas fa-exclamation - circle"></i>
         <span> 必填!</span >`;
@@ -283,28 +245,15 @@
       data.push(newTicket);
     }
 
-    // 初始設定
-    function init() {
-      let str = "";
-      let resultNum = data.length;
-      data.forEach(item => {
-        str += printCard(item);
-      });
-      list.innerHTML = str;
-      printResultText(resultNum);
-    }
-
-    init();
-
     // 地區篩選功能
     const areaFilter = document.querySelector(".regionSearch");
     areaFilter.addEventListener("change", function (e) {
       let str = "";
       let resultNum = 0;
 
-      // 全部地區 
+      // 全部地區
       if (e.target.value == "") {
-        init();
+        renderHTML();
         return;
       }
       data.forEach(item => {
@@ -341,12 +290,16 @@
           obj[elmId] = elmValue;
         }
       })
+
       // 如果沒有錯誤訊息才增加資料
       if (alertNum == 0) {
         addNewTicket(obj);
-        init();
+        renderHTML();
+        swal("新增完成");
+        window.scrollTo(0, document.documentElement.scrollHeight);
       }
     })
+
   </script>
 </body>
 
