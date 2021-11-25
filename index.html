@@ -282,6 +282,9 @@
 
         let elmId = elm.id;
         let elmValue = elm.value.trim();
+        if (elmId == "ticketPrice" || elmId == "ticketNum" || elmId == "ticketRate") {
+          elmValue = Number(elmValue);
+        }
 
         if (elmValue == "" || elmValue == undefined) {
           showAlertMsg(elmId);
