@@ -115,7 +115,7 @@
     <div class="search-area">
       <select name="" class="regionSearch">
         <option value="地區搜尋" disabled selected hidden>地區搜尋</option>
-        <option value="">全部地區</option>
+        <option value="全部地區">全部地區</option>
         <option value="台北">台北</option>
         <option value="台中">台中</option>
         <option value="高雄">高雄</option>
@@ -252,7 +252,7 @@
       let resultNum = 0;
 
       // 全部地區
-      if (e.target.value == "") {
+      if (e.target.value == "全部地區") {
         renderHTML();
         return;
       }
@@ -298,6 +298,7 @@
       if (alertNum == 0) {
         addNewTicket(obj);
         renderHTML();
+        areaFilter.options[1].selected = true;
         swal("新增完成");
         window.scrollTo(0, document.documentElement.scrollHeight);
       }

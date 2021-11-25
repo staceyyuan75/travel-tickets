@@ -9,7 +9,7 @@ function renderHTML() {
     str += printCard(item);
   })
   list.innerHTML = str;
-  resultText.textContent = printResultText(resultNum);
+  printResultText(resultNum);
 }
 
 function printCard(item) {
