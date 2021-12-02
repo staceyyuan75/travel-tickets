@@ -7,7 +7,7 @@ function renderHTML() {
   let resultNum = data.length;
   data.forEach(item => {
     str += printCard(item);
-  })
+  });
   list.innerHTML = str;
   printResultText(resultNum);
 }
@@ -49,8 +49,14 @@ function printResultText(num) {
   resultText.textContent = `本次搜尋共 ${num} 筆資料`;
 }
 
-axios.get('https://raw.githubusercontent.com/hexschool/js-training/main/travelApi.json')
-.then(function (response) {
-  data = response.data.data;
-  renderHTML();
-})
+axios
+  .get(
+    "https://raw.githubusercontent.com/hexschool/js-training/main/travelApi.json"
+  )
+  .then(function (response) {
+    data = response.data.data;
+    renderHTML();
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
