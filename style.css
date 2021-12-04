@@ -233,7 +233,7 @@ body {
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
+          align-items: flex-start;
   max-width: 920px;
   margin: 0 auto;
   padding: 50px 0;
@@ -241,6 +241,7 @@ body {
 
 .search-area p {
   color: #818A91;
+  flex: 2;
 }
 
 @media (max-width: 768px) {
@@ -453,4 +454,9 @@ body {
 
 .swal-button:not([disabled]):hover {
   background-color: #64C3BF;
+}
+
+.chart {
+  width: 200px;
+  height: 200px;
 }
